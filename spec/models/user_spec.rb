@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-describe CourseDiscipline do
+describe User do
 
 end
