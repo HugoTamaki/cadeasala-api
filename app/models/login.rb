@@ -10,6 +10,6 @@ class Login
 
     def generate_token(data)
       JWT.encode data, Rails.application.secrets.secret_key_base, 'HS256'
-  end
+    end
   end
 end
