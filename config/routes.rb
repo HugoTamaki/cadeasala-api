@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       }
 
       namespace :admin, as: nil do
-
+        resources :locations, only: [:index]
       end
     end
   end
