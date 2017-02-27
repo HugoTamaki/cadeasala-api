@@ -9,7 +9,7 @@ describe Users::SessionsController do
 
   describe 'POST #create' do
     context 'user exists' do
-      it 'sends user and token' do
+      it 'sends user' do
         post :create, params: { user: {
             email: 'johndoe@email.com',
             password: 'teste123'
@@ -17,11 +17,33 @@ describe Users::SessionsController do
         }
 
         expected_reponse = {
-          id: user.id,
-          email: user.email
+          user: {
+            id: user.id,
+            email: user.email
+          }
         }
 
         expect(response.body).to eql(expected_reponse.to_json)
+      end
+
+      it 'responds with 200' do
+        post :create, params: { user: {
+            email: 'johndoe@email.com',
+            password: 'teste123'
+          }
+        }
+
+        expect(response.status).to eql(200)
+      end
+
+      it 'respond with token' do
+        post :create, params: { user: {
+            email: 'johndoe@email.com',
+            password: 'teste123'
+          }
+        }
+
+        expect(response.headers['XSRF-TOKEN']).not_to be_nil        
       end
     end
 
@@ -33,12 +55,21 @@ describe Users::SessionsController do
           }
         }
 
+        expect(response.status).to eql(404)
+      end
+
+      it 'respond with error message' do
+        post :create, params: { user: {
+            email: 'janedoe@email.com',
+            password: 'teste123'
+          }
+        }
+
         expected_response = {
           error: 'email or password is wrong'
         }
 
         expect(response.body).to eql(expected_response.to_json)
-        expect(response.status).to eql(404)
       end
     end
   end
