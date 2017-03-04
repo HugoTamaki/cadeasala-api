@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
       namespace :admin, as: nil do
         resources :locations, only: [:index] do
-          resources :courses, only: [:index]
+          resources :courses, only: [:index] do
+            resources :course_disciplines, only: [:index]
+          end
         end
       end
     end
