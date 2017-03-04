@@ -5,7 +5,7 @@ module Api
         def index
           location = Location.find(params[:location_id])
           course = Course.find(params[:course_id])
-          course_disciplines = CourseDiscipline.joins(:discipline).where(location: location, course: course).order("disciplines.name asc")
+          course_disciplines = CourseDiscipline.joins(:discipline).where(location: location, course: course).order("disciplines.slug asc")
 
           render json: course_disciplines, each_serializer: Api::V1::Admin::CourseDisciplinesSerializer, status: :ok
         end
@@ -19,7 +19,7 @@ module Api
             course_discipline.update(cd_params)
           end
 
-          course_disciplines = CourseDiscipline.joins(:discipline).where(location: location, course: course).order("disciplines.name asc")
+          course_disciplines = CourseDiscipline.joins(:discipline).where(location: location, course: course).order("disciplines.slug asc")
 
           render json: course_disciplines, each_serializer: Api::V1::Admin::CourseDisciplinesSerializer, status: :ok
         end
