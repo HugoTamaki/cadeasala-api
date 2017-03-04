@@ -10,7 +10,9 @@ Rails.application.routes.draw do
       namespace :admin, as: nil do
         resources :locations, only: [:index] do
           resources :courses, only: [:index] do
-            resources :course_disciplines, only: [:index]
+            resources :course_disciplines, only: [:index] do
+              put 'bulk_update', on: :collection
+            end
           end
         end
       end
