@@ -1,4 +1,6 @@
 class Users::SessionsController < Devise::SessionsController
+  include Devise::Controllers::Helpers
+  
   skip_before_action :validate_token, only: :create
   skip_after_action :update_token, only: :create
   # respond_to :json
