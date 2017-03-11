@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe CoursesController, type: :controller do
+describe Api::V1::Admin::CoursesController do
 
 end
