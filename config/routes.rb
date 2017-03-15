@@ -16,6 +16,12 @@ Rails.application.routes.draw do
           end
         end
       end
+
+      resources :locations, only: [:index] do
+        resources :courses, only: [:index] do
+          resources :course_disciplines, only: [:index]
+        end
+      end
     end
   end
 end
