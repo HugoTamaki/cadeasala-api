@@ -9,6 +9,7 @@ describe Api::V1::Admin::CourseDisciplinesController do
     {
       id: course_discipline.id,
       discipline_name: discipline.name,
+      discipline_id: discipline.id,
       ap1_local: course_discipline.ap1_local,
       ap1_date: course_discipline.ap1_date,
       ap2_local: course_discipline.ap2_local,

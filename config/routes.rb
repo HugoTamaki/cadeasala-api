@@ -15,6 +15,8 @@ Rails.application.routes.draw do
             end
           end
         end
+
+        resources :disciplines, only: [:show, :update]
       end
 
       resources :locations, only: [:index] do
